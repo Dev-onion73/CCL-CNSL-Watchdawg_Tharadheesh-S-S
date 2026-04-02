@@ -1,0 +1,155 @@
+Metric_Name,Description,Datatype,Range,Metric_Class,Category
+healthStatus,Transceiver health status value,Enum16,0-32,pie:OpticsHealth,Metrics
+reason,RCA about the health status of the transceiver,String:Basic,N/A,pie:OpticsHealth,Metrics
+sensorHealth,Sensor Health Status Details,String:Basic,N/A,pie:Sensor,Metrics
+sensorPrediction,Sensor Prediction Details,String:Basic,N/A,pie:Sensor,Metrics
+cdMax,Optics Chromatic Dispersion Maximum,Sint32,-350000-350000,tpmon:OpticsThreshold,Metrics
+cdMin,Optics Chromatic Dispersion Minimum,Sint32,-350000-350000,tpmon:OpticsThreshold,Metrics
+dgdMax,Differential Group Delay Maximum,Uint32,0-4294967294,tpmon:OpticsThreshold,Metrics
+dgdMin,Differential Group Delay Minimum,Uint32,0-4294967294,tpmon:OpticsThreshold,Metrics
+freqOffMax,Low Signal Frequency Offset Maximum,Uint32,0-4294967294,tpmon:OpticsThreshold,Metrics
+freqOffMin,Low Signal Frequency Offset Minimum,Uint32,0-4294967294,tpmon:OpticsThreshold,Metrics
+lbcMax,Laser Bias Current Maximum,Uint32,0-4294967294,tpmon:OpticsThreshold,Metrics
+lbcMin,Laser Bias Current Minimum,Uint32,0-4294967294,tpmon:OpticsThreshold,Metrics
+oprMax,Optical Power RX Maximum,Uint32,0-4294967294,tpmon:OpticsThreshold,Metrics
+oprMin,Optical Power RX Minimum,Uint32,0-4294967294,tpmon:OpticsThreshold,Metrics
+optMax,Optical Power TX Maximum,Uint32,1-4294967294,tpmon:OpticsThreshold,Metrics
+optMin,Optical Power TX Minimum,Uint32,1-4294967294,tpmon:OpticsThreshold,Metrics
+osnrMax,Optical Signal To Noise Ratio Maximum,Uint32,1-4294967294,tpmon:OpticsThreshold,Metrics
+osnrMin,Optical Signal To Noise Ratio Minimum,Uint32,1-4294967294,tpmon:OpticsThreshold,Metrics
+pcrMax,Polarization Change Rate Maximum,Uint32,0-4294967294,tpmon:OpticsThreshold,Metrics
+pcrMin,Polarization Change Rate Minimum,Uint32,0-4294967294,tpmon:OpticsThreshold,Metrics
+pdlMax,Polarization Dependent Loss Maximum,Uint32,0-4294967294,tpmon:OpticsThreshold,Metrics
+pdlMin,Polarization Dependent Loss Minimum,Uint32,0-4294967294,tpmon:OpticsThreshold,Metrics
+rxSigPowMax,Receiving Signal Power Maximum,Uint32,1-4294967290,tpmon:OpticsThreshold,Metrics
+rxSigPowMin,Receiving Signal Power Minimum,Uint32,1-4294967290,tpmon:OpticsThreshold,Metrics
+snrMax,Signal-To-Noise Ratio Maximum,Uint32,1-2147483646,tpmon:OpticsThreshold,Metrics
+snrMin,Signal-To-Noise Ratio Minimum,Uint32,1-2147483646,tpmon:OpticsThreshold,Metrics
+sopmdMax,Second Order Polarization Mode Dispersion Maximum,Uint32,0-4294967294,tpmon:OpticsThreshold,Metrics
+sopmdMin,Second Order Polarization Mode Dispersion Minimum,Uint32,0-4294967294,tpmon:OpticsThreshold,Metrics
+prefecberHighThreshold,PreFecBER-high-threshold,Uint64,1-999999999999999,tpmon:FecAlarm,Monitoring
+prefecberLowThreshold,PreFecBER-low-threshold,Uint64,1-999999999999999,tpmon:FecAlarm,Monitoring
+ecBitsMaxReport,FEC report for EcBitsMax,Bool,true/false,tpmon:FecReport,Configuration
+ecBitsMinReport,FEC report for EcBitsMin,Bool,true/false,tpmon:FecReport,Configuration
+postFecBerMaxReport,FEC report for PostFecBerMax,Bool,true/false,tpmon:FecReport,Configuration
+postFecBerMinReport,FEC report for PostFecBerMin,Bool,true/false,tpmon:FecReport,Configuration
+preFecBerMaxReport,FEC report for PreFecBerMax,Bool,true/false,tpmon:FecReport,Configuration
+preFecBerMinReport,FEC report for PreFecBerMin,Bool,true/false,tpmon:FecReport,Configuration
+qualityMarginMaxReport,FEC report for Quality Margin Max,Bool,true/false,tpmon:FecReport,Configuration
+qualityMarginMinReport,FEC report for Quality Margin Min,Bool,true/false,tpmon:FecReport,Configuration
+qualityMaxReport,FEC report for QualityMax,Bool,true/false,tpmon:FecReport,Configuration
+qualityMinReport,FEC report for QualityMin,Bool,true/false,tpmon:FecReport,Configuration
+ucWordsMaxReport,FEC report for UcWordsMax,Bool,true/false,tpmon:FecReport,Configuration
+ucWordsMinReport,FEC report for UcWordsMin,Bool,true/false,tpmon:FecReport,Configuration
+transmitFaultCount,Transmit Fault Counter,Uint64,0-18446744073709551615,eqpt:FcotLane,Metrics
+avg,Transceiver sensor avg warning threshold,Float,N/A,eqpt:FcotSensor,Metrics
+highAlarm,Transceiver sensor high alarm threshold,Float,N/A,eqpt:FcotSensor,Monitoring
+highWarning,Transceiver sensor high warning threshold,Float,N/A,eqpt:FcotSensor,Monitoring
+instant,Transceiver sensor instant warning threshold,Float,N/A,eqpt:FcotSensor,Metrics
+lowAlarm,Transceiver sensor low alarm threshold,Float,N/A,eqpt:FcotSensor,Monitoring
+lowWarning,Transceiver sensor low warning threshold,Float,N/A,eqpt:FcotSensor,Monitoring
+max,Transceiver sensor max warning threshold,Float,N/A,eqpt:FcotSensor,Metrics
+min,Transceiver sensor min warning threshold,Float,N/A,eqpt:FcotSensor,Metrics
+value,Transceiver sensor current value,Float,N/A,eqpt:FcotSensor,Metrics
+numLanes,Number of Network Lanes,Uint16,0-65535,eqpt:FcotDomStats,Metrics
+dayAvgUsageIn,Per day average input power usage in watt,Float,N/A,eqpt:Last14DaysHist,Metrics
+dayAvgUsageOut,Per day average output power usage in watt,Float,N/A,eqpt:Last14DaysHist,Metrics
+tempValue,Equipment sensor temperature value,Uint16,0-65535,eqpt:Sensor,Metrics
+majorThresh,Major threshold of the sensor,Sint16,-32768-32767,eqpt:Sensor,Configuration
+minorThresh,Minor threshold of the sensor,Sint16,-32768-32767,eqpt:Sensor,Configuration
+speed,Operating speed value,Uint32,0-4294967295,pie:UsdHardwareData,Metrics
+duplex,Hardware duplex value,Uint16,0-65535,pie:UsdHardwareData,Metrics
+operState,Oper state value,Uint16,0-65535,pie:UsdHardwareData,Metrics
+phyPort,Operating phyPort value,Bool,true/false,pie:UsdHardwareData,Metrics
+xcvrPresent,Operating xcvr present value,Bool,true/false,pie:UsdHardwareData,Metrics
+qsaPresent,Operating qsa present value,Bool,true/false,pie:UsdHardwareData,Metrics
+glctPresent,Operating glct present value,Bool,true/false,pie:UsdHardwareData,Metrics
+loopback,Hardware loopback value,Bool,true/false,pie:UsdHardwareData,Metrics
+prbs,Operating prbs value,Bool,true/false,pie:UsdHardwareData,Metrics
+purged,Operating purged value,Bool,true/false,pie:UsdHardwareData,Metrics
+htxLanes,Host transmit ready lanes,Uint16,0-65535,pie:PhyDataValue,Metrics
+hrxLanes,Host receive ready lanes,Uint16,0-65535,pie:PhyDataValue,Metrics
+ltxLanes,Ltx Hrx Channel lanes,Uint16,0-65535,pie:PhyDataValue,Metrics
+lrxLanes,Lrx has exception lanes,Uint16,0-65535,pie:PhyDataValue,Metrics
+opMode,Host operational mode,Uint16,0-65535,pie:PhyDataValue,Metrics
+auxWarning,AuxWarning value for the given transceiver,Uint32,0-4294967295,pie:Transceiver,Monitoring
+biasCurrent,BiasCurrent value for the given transceiver,Float,N/A,pie:Transceiver,Metrics
+event,Event ID for the given property container,Uint32,0-4294967295,pie:Transceiver,Metadata
+fERAverage,FERAverage value for the given transceiver,Uint32,0-4294967295,pie:Transceiver,Metrics
+fERCurrent,FERCurrent value for the given transceiver,Float,N/A,pie:Transceiver,Metrics
+fERMaximum,FERMaximum value for the given transceiver,Uint32,0-4294967295,pie:Transceiver,Metrics
+fERMinimum,FERMinimum value for the given transceiver,Uint32,0-4294967295,pie:Transceiver,Metrics
+fERPriorPeriod,FERPriorPeriod value for the given transceiver,Uint32,0-4294967295,pie:Transceiver,Metrics
+laserFrequency,LaserFrequency value for the given transceiver,Float,N/A,pie:Transceiver,Metrics
+laserReading,LaserReading Temperature or Wavelength value for the given transceiver,Float,N/A,pie:Transceiver,Metrics
+laserTemperature,LaserTemperature value for the given transceiver,Float,N/A,pie:Transceiver,Metrics
+moduleAux1,ModuleAux1 value for the given transceiver,Uint32,0-4294967295,pie:Transceiver,Metrics
+moduleAux2,ModuleAux2 value for the given transceiver,Uint32,0-4294967295,pie:Transceiver,Metrics
+moduleAux3,ModuleAux3 value for the given transceiver,Uint32,0-4294967295,pie:Transceiver,Metrics
+moduleFaults,ModuleFaults value for the given transceiver,Uint32,0-4294967295,pie:Transceiver,Monitoring
+moduleMonitorCustom,ModuleMonitorCustom value for the given transceiver,Uint32,0-4294967295,pie:Transceiver,Metrics
+moduleTemperature,ModuleTemperature value for the given transceiver,Uint32,0-4294967295,pie:Transceiver,Metrics
+moduleVoltage,ModuleVoltage value for the given transceiver,Uint32,0-4294967295,pie:Transceiver,Metrics
+pAM4LevelTransition,PAM4LevelTransition value for the given transceiver,Uint32,0-4294967295,pie:Transceiver,Monitoring
+preFECBERAverage,PreFECBERAverage value for the given transceiver,Uint32,0-4294967295,pie:Transceiver,Metrics
+preFECBERCurrent,PreFECBERCurrent value for the given transceiver,Uint32,0-4294967295,pie:Transceiver,Metrics
+preFECBERMax,PreFECBERMax value for the given transceiver,Uint32,0-4294967295,pie:Transceiver,Metrics
+preFECBERMin,PreFECBERMin value for the given transceiver,Uint32,0-4294967295,pie:Transceiver,Metrics
+preFECBERPriorPeriod,PreFECBERPriorPeriod value for the given transceiver,Uint32,0-4294967295,pie:Transceiver,Metrics
+residualDispersion,ResidualDispersion value for the given transceiver,Uint32,0-4294967295,pie:Transceiver,Metrics
+rxCDR,RxCDR value for the given transceiver,Uint32,0-4294967295,pie:Transceiver,Metrics
+rxLOS,Rx LOS value for the given transceiver,Uint32,0-4294967295,pie:Transceiver,Monitoring
+rxPower,RxPower value for the given transceiver,Float,N/A,pie:Transceiver,Metrics
+sNR,SNR value for the given transceiver,Uint32,0-4294967295,pie:Transceiver,Metrics
+tecCurrent,TecCurrent value for the given transceiver,Float,N/A,pie:Transceiver,Metrics
+temperature,Temperature value for the given transceiver,Float,N/A,pie:Transceiver,Metrics
+timestamp,Time stamp for the transceiver event,Uint32,0-4294967295,pie:Transceiver,Metadata
+transceiverType,Transceiver type value for the given USD port,Uint32,0-4294967295,pie:Transceiver,Metadata
+txAdaptEqFault,TxAdaptEqFault value for the given transceiver,Uint32,0-4294967295,pie:Transceiver,Monitoring
+txCDR,TxCDR value for the given transceiver,Uint32,0-4294967295,pie:Transceiver,Metrics
+txFault,TxFault value for the given transceiver,Uint32,0-4294967295,pie:Transceiver,Monitoring
+txLOS,Tx LOS value for the given transceiver,Uint32,0-4294967295,pie:Transceiver,Monitoring
+txPower,TxPower value for the given transceiver,Float,N/A,pie:Transceiver,Metrics
+vendorWarning,VendorWarning value for the given transceiver,Uint32,0-4294967295,pie:Transceiver,Monitoring
+voltage,Voltage value for the given transceiver,Float,N/A,pie:Transceiver,Metrics
+voltageWarnings,VoltageWarnings value for the given transceiver,Uint32,0-4294967295,pie:Transceiver,Monitoring
+vendor,The vendor of the controller,string:Basic,N/A,eqptcap:Sfp,Metadata
+model,Holds the model of the controller,string:Basic,N/A,eqptcap:Sfp,Metadata
+version,The version of the compatibility catalog,string:Basic,N/A,eqptcap:Sfp,Metadata
+adminState,Admin state value for the given USD port,Uint16,0-65535,pie:UsdHardwareData,Metadata
+bkMap,Operating breakout map value for the given USD port,Uint16,0-65535,pie:UsdHardwareData,Metadata
+duplex,Hardware duplex value for the given USD port,Uint16,0-65535,pie:UsdHardwareData,Metadata
+fec,Operating FEC value for the given USD port,Uint32,0-4294967295,pie:UsdHardwareData,Metadata
+glctPresent,Operating GLCT present value for the given USD port,Bool,true/false,pie:UsdHardwareData,Metadata
+hwPortPresent,Operating hardware port present value for the given USD port,Bool,true/false,pie:UsdHardwareData,Metadata
+ipg,Operating IPG value for the given USD port,Uint16,0-65535,pie:UsdHardwareData,Metadata
+loopback,Hardware loopback value for the given USD port,Bool,true/false,pie:UsdHardwareData,Metadata
+mdix,Hardware MDIX value for the given USD port,Uint16,0-65535,pie:UsdHardwareData,Metadata
+mtuValue,Hardware MTU value for the given USD port,Uint16,0-65535,pie:UsdHardwareData,Metadata
+operState,Oper state value for the given USD port,Uint16,0-65535,pie:UsdHardwareData,Metadata
+phyPort,Operating PHY port value for the given USD port,Bool,true/false,pie:UsdHardwareData,Metadata
+prbs,Operating PRBS value for the given USD port,Bool,true/false,pie:UsdHardwareData,Metadata
+purged,Operating purged value for the given USD port,Bool,true/false,pie:UsdHardwareData,Metadata
+qsaPresent,Operating QSA present value for the given USD port,Bool,true/false,pie:UsdHardwareData,Metadata
+speed,Operating speed value for the given USD port,Uint32,0-4294967295,pie:UsdHardwareData,Metadata
+xcvrPresent,Operating transceiver present value for the given USD port,Bool,true/false,pie:UsdHardwareData,Metadata
+vendor,The vendor of the controller,string:Basic,N/A,eqptcap:Sfp,Metadata
+model,Holds the model of the controller,string:Basic,N/A,eqptcap:Sfp,Metadata
+version,The version of the compatibility catalog,string:Basic,N/A,eqptcap:Sfp,Metadata
+adminState,Admin state value for the given USD port,Uint16,0-65535,pie:UsdHardwareData,Metadata
+bkMap,Operating breakout map value for the given USD port,Uint16,0-65535,pie:UsdHardwareData,Metadata
+duplex,Hardware duplex value for the given USD port,Uint16,0-65535,pie:UsdHardwareData,Metadata
+fec,Operating FEC value for the given USD port,Uint32,0-4294967295,pie:UsdHardwareData,Metadata
+glctPresent,Operating GLCT present value for the given USD port,Bool,true/false,pie:UsdHardwareData,Metadata
+hwPortPresent,Operating hardware port present value for the given USD port,Bool,true/false,pie:UsdHardwareData,Metadata
+ipg,Operating IPG value for the given USD port,Uint16,0-65535,pie:UsdHardwareData,Metadata
+loopback,Hardware loopback value for the given USD port,Bool,true/false,pie:UsdHardwareData,Metadata
+mdix,Hardware MDIX value for the given USD port,Uint16,0-65535,pie:UsdHardwareData,Metadata
+mtuValue,Hardware MTU value for the given USD port,Uint16,0-65535,pie:UsdHardwareData,Metadata
+operState,Oper state value for the given USD port,Uint16,0-65535,pie:UsdHardwareData,Metadata
+phyPort,Operating PHY port value for the given USD port,Bool,true/false,pie:UsdHardwareData,Metadata
+prbs,Operating PRBS value for the given USD port,Bool,true/false,pie:UsdHardwareData,Metadata
+purged,Operating purged value for the given USD port,Bool,true/false,pie:UsdHardwareData,Metadata
+qsaPresent,Operating QSA present value for the given USD port,Bool,true/false,pie:UsdHardwareData,Metadata
+speed,Operating speed value for the given USD port,Uint32,0-4294967295,pie:UsdHardwareData,Metadata
+xcvrPresent,Operating transceiver present value for the given USD port,Bool,true/false,pie:UsdHardwareData,Metadata
