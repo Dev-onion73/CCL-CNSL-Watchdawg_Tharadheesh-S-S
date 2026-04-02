@@ -1,38 +1,24 @@
-# AI-Driven Predictive Hardware Health Monitoring
+# AI-Driven Predictive Hardware Health Monitoring (QSFP-DD / Nexus Stack)
 
-This repository contains a comprehensive predictive monitoring solution for Cisco QSFP-DD transceivers, with an extendable framework for broader hardware systems. The solution leverages AI, physics-based digital twins, and real-time telemetry to predict hardware failures before they manifest as outages.
+## Overview
 
----
+This repository documents the complete predictive monitoring pipeline for hardware infrastructure, starting with QSFP-DD transceivers in Cisco Nexus switches. The solution provides proactive failure detection, risk scoring, and predictive maintenance through a multi-layered AI/ML pipeline (L0-L7). It leverages physics-informed models, digital twins, and temporal sequence learning for precise Remaining Useful Life (RUL) estimation.
+
+**Primary Goals:**
+- Transform reactive hardware monitoring into predictive, proactive analytics.
+- Detect early “silent killer” failure modes (solder fatigue, electrical drift, thermal degradation, signal integrity issues).
+- Integrate seamlessly with Cisco’s in-house telemetry infrastructure and NetOps dashboard ecosystem.
 
 ## Repository Structure
 
-- `Modelling-pipeline-architecture.md`  
-  Full end-to-end description of the AI/ML + physics pipeline from raw telemetry ingestion to RUL estimation and actionable scheduling.
+| File | Description |
+|------|-------------|
+| `Modelling-pipeline-architecture.md` | Complete end-to-end explanation of the pipeline L0-L7 with physics models, AI/ML layers, and inter-layer data flow. |
+| `Deployment-model.md` | Detailed deployment blueprint, including VM pools, layer-wise clustering, phase-wise rollout, resource sizing, and cost considerations. |
+| `Telemetry-inference.md` | Cisco DME schema mapping, metrics collected, fallback mechanisms, gRPC protocols, and reasoning for metric selection. |
+| `Model.md` | Deep dive into model inference: physics equations, Arrhenius integration, digital twin updates, particle filter computations, RUL estimation, and example workflows. |
+| `CISCO-Connectors.md` | API documentation for Nexus Dashboard integration, NetOps dashboard, telemetry collectors (primary in-house and fallback gRPC), and operational usage. |
 
-- `Deployment-model.md`  
-  Detailed explanation of deployment architecture, including VM pools, clustering strategy, horizontal/vertical scaling, power optimization, and cost efficiency.
+## Reference
 
-- `Telemetry-inference.md`  
-  How telemetry data is sourced, preprocessed, and utilized. Details Cisco DME schemas and the rationale for each metric chosen, including fallback mechanisms.
-
-- `Model.md`  
-  In-depth explanation of all modeling layers, including mathematical descriptions of physics models, sequence forecasting, anomaly detection, and RUL estimation. Includes examples and step-by-step inference.
-
-- `CISCO-Connectors.md`  
-  API documentation for Nexus Dashboard integration, NetOps dashboard integration, fallback collector mechanisms, gRPC telemetry ingestion, and the in-house collector setup.
-
----
-
-## Purpose
-
-The project aims to enable **proactive failure detection** for critical hardware components, reduce unplanned downtime, and maximize network availability in large-scale data center deployments. The pipeline allows seamless integration with existing Cisco infrastructure while providing an extendable architecture for future hardware modules.
-
----
-
-## Key Highlights
-
-1. **Proactive Detection:** Identifies pre-failure signatures weeks before failure.
-2. **Physics-Aware Models:** Digital twins model thermal, mechanical, and electrical degradation.
-3. **Scalable Deployment:** Uses VM-based clusters to support multiple racks, rooms, and compute nodes.
-4. **Integration Ready:** Interfaces directly with Cisco Nexus Dashboard and internal telemetry collectors.
-5. **Fallback Resilience:** Implements fallback telemetry ingestion via gRPC/Telegraf if in-house collector is unavailable.
+For complete source code, simulation scripts, and data pipelines, refer to the [repository link]. This documentation provides the fully detailed technical specifications.
