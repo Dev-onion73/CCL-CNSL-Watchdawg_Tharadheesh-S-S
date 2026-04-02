@@ -1,46 +1,56 @@
-# Modelling Pipeline Architecture (L0–L7)
+# Modelling Pipeline Architecture: L0–L7
 
-This document details the **full predictive pipeline** from raw telemetry to actionable maintenance recommendations.
+## Overview
 
----
+The pipeline is designed to transform raw telemetry into actionable RUL and risk scoring. Each layer builds on the previous, using physics-informed models, temporal attention mechanisms, and digital twins to capture both gradual degradation and non-degradation failures.
 
-## Layer-Wise Architecture & Function
+**Layers:**
 
-| Layer | Purpose | Models / Approach | Data Flow Highlights |
-|-------|---------|-----------------|--------------------|
-| **L0: Telemetry Connector** | Ingest telemetry from QSFP-DD transceivers | gRPC/MDT ingestion, schema parsing, timestamp alignment | Inputs raw device metrics; forwards preprocessed data to L1 |
-| **L1: Signal Conditioning** | Clean, normalize, repair telemetry | Missing value repair, outlier rejection, scaling | Ensures robust inputs for physics modeling |
-| **L2: Physics State Engine** | Compute latent physical states | Thermal, electrical, aging, solder fatigue models | Outputs hidden states for L3 aggregation |
-| **L3: Anomaly Aggregator** | Fuse signals across devices and racks | Dual-stream fusion: residual + precursor streams | Identifies anomalies within clusters |
-| **L4: Temporal Inference** | Forecast future states | Chronos, PathTST | Predicts evolution of physical stress over time |
-| **L5: Risk Classification** | Map forecasts to health scores | iTransformer | Produces multi-class health risk probabilities |
-| **L6: RUL Inference** | Estimate remaining useful life | Digital Twin (physics + particle filter / ADT) | Computes expected degradation timeline |
-| **L7: Scheduler / Decision Layer** | Generate actionable tasks | Priority scoring, maintenance window selection | Integrates with NetOps / Nexus Dashboard for alerting |
+1. **L0 – Telemetry Ingestion**
+   - Inputs: Firmware-processed multi-sensor composites (temperature, voltage, current, bias currents).
+   - Purpose: Standardize and parse heterogeneous telemetry.
+   - Output: Cleaned sequences with timestamps aligned.
 
----
+2. **L1 – Signal Conditioning**
+   - Missing value repair, outlier suppression, normalization.
+   - Hot-plug exclusion window (500ms) prevents false anomaly triggers on module insertion.
 
-### Data Flow
+3. **L2 – Physics State Engine**
+   - Thermal stress computation, laser aging integration (Arrhenius), electrical drift accumulation, solder fatigue Coffin-Manson integration.
+   - Output: Physics state vector `[thermalStress, thermalMargin, fatigueIndex, laserAgingState, linkMargin, fecRUL_estimate, opticalImpairmentScore, voltageDriftStress, electricalAgingState, pamEyeMargin, siAnomalyScore, eqFaultPattern]`.
 
-1. L0 ingests telemetry → passes to L1  
-2. L1 cleans, normalizes → passes to L2  
-3. L2 computes hidden physics states → feeds L3  
-4. L3 fuses multi-device anomalies → passes to L4  
-5. L4 forecasts sequences → feeds L5  
-6. L5 classifies risk → passes to L6  
-7. L6 computes RUL → L7 schedules interventions → updates dashboards
+4. **L3 – Dual-Stream Fusion**
+   - Stream A: Threshold-based anomaly detection.
+   - Stream B: Residuals and FEC codeword monotonicity for early detection of deterministic errors.
+   - Output: Aggregated anomaly vector.
 
----
+5. **L4 – Sequence Forecasting**
+   - Models: Chronos, PathTST.
+   - Feature-first attention over physics state + anomaly evidence.
+   - Forecasts future system state.
 
-### Granular Notes
+6. **L5 – Risk Classification**
+   - Models: iTransformer with four specialized heads (C1-C4).
+   - Multi-label outputs for simultaneous failure class detection.
+   - Includes regression for drift rates and auxiliary metrics.
 
-- L2 Physics includes:
-  - Thermal stress: \(dT/dt = (P_{dissipated} - P_{cooling})/C_{thermal}\)
-  - Aging: \(AgingRate(T) = A \cdot \exp(-E_a/(kT))\)
-  - Electrical drift: \(V_{stress} = |V - V_{nominal}| / (V_{tolerance}/2)\)
-  - Latent states used in L3 dual-stream fusion
+7. **L6 – Digital Twin / RUL Estimation**
+   - Physics-conditioned particle filters, FEC slope extrapolation, or risk flag output for non-degradation failures.
+   - Integrates multiple failure trajectories with confidence weighting.
 
-- L4 Chronos / PathTST handles multivariate time series and cross-device correlations
+8. **L7 – Scheduling & Dashboard Integration**
+   - Uses L6 outputs to generate priority scores and maintenance recommendations.
+   - Integrates with NetOps dashboard and Cisco Nexus API.
 
-- L5 iTransformer captures long-range dependencies for risk classification across failure classes
+## Layer Mapping
 
-- L6 Digital Twin fuses physics projections with observed telemetry for RUL
+| Layer | Model / Mechanism | Input | Output | Key Notes |
+|-------|-----------------|-------|--------|-----------|
+| L0 | Telemetry Parser | Raw DME metrics, gRPC payloads | Cleaned sequence | Time-aligned, schema validated |
+| L1 | Filtering / Validation | L0 output | Conditioned sequence | Hot-plug gate, spike suppression |
+| L2 | Physics Engine | L1 output | Physics state vector | Thermal, optical, electrical, SI/DSP primitives |
+| L3 | Fusion Layer | L2 vector | Anomaly evidence | Dual-stream, cross-device aggregation |
+| L4 | Temporal Forecast | L3 vector | Predicted sequence | Chronos, PathTST sequence models |
+| L5 | Risk Classification | L4 sequence | P(C1..C4), drift regressor | iTransformer, multi-label |
+| L6 | RUL Inference | L5 outputs | RUL distribution / risk flag | Digital Twin particle filter, FEC slope |
+| L7 | Scheduler | L6 outputs | Maintenance recommendations | NetOps & Nexus Dashboard integration |
