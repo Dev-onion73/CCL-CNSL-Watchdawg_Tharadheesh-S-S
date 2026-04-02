@@ -25,9 +25,9 @@ Digital Twin models combine **thermal, electrical, and optical physics** to prop
 
 1. **Thermal Model:**  
 
-\[
+$$
 T_{t+\Delta t} = T_t + \Delta t \cdot \left( k_{heat} \cdot P_{loss} + k_{ambient} \cdot (T_{ambient} - T_t) \right)
-\]
+$$
 
 - \(T_t\): Current module/laser temperature  
 - \(P_{loss}\): Power dissipation (from voltage, biasCurrent, txPower)  
@@ -35,17 +35,17 @@ T_{t+\Delta t} = T_t + \Delta t \cdot \left( k_{heat} \cdot P_{loss} + k_{ambien
 
 2. **Electrical Aging Model:**
 
-\[
+$$
 V_{drift}(t) = V(t) - V_0 + \int_0^t f(I_{bias}(\tau), T(\tau)) d\tau
-\]
+$$
 
 - Integrates current and temperature history to model capacitor aging, solder fatigue, or threshold drift.
 
 3. **Optical Degradation Model:**
 
-\[
+$$
 BER_{pred} = BER_{base} \cdot \left(1 + \alpha \cdot CD + \beta \cdot DGD + \gamma \cdot PDL \right)
-\]
+$$
 
 - Incorporates chromatic dispersion (CD), differential group delay (DGD), and polarization dependent loss (PDL) as cross-metric correlates for signal degradation.
 
@@ -59,38 +59,42 @@ L6 uses a **particle filter approach** to generate probabilistic RUL distributio
 
 - Generate \(N\) particles representing possible latent device states:  
 
-\[
+$$
 x_0^{(i)} = [T_0^{(i)}, V_0^{(i)}, BER_0^{(i)}, \dots]
-\]
+$$
 
-- Assign uniform or prior-weighted probabilities \(w_0^{(i)} = 1/N\).
+- Assign uniform or prior-weighted probabilities:
+
+$$
+w_0^{(i)} = \frac{1}{N}
+$$
 
 **Step 2 — Physics Projection:**
 
 - Propagate each particle using physics models over future time steps \(\Delta t\):  
 
-\[
+$$
 x_{t+\Delta t}^{(i)} = f_{physics}(x_t^{(i)}) + \epsilon
-\]
+$$
 
 - \(\epsilon\) captures process noise (environmental uncertainty, voltage fluctuation).
 
 **Step 3 — Posterior Update (Bayesian Weighting):**
 
-\[
-w_{t+\Delta t}^{(i)} = w_t^{(i)} \cdot p(y_{t+\Delta t} | x_{t+\Delta t}^{(i)})
-\]
+$$
+w_{t+\Delta t}^{(i)} = w_t^{(i)} \cdot p(y_{t+\Delta t} \mid x_{t+\Delta t}^{(i)})
+$$
 
-- Likelihood \(p(y | x)\) derived from **L5 risk scores**, e.g., high BER deviation increases particle weight for imminent failure.
+- Likelihood \(p(y \mid x)\) derived from **L5 risk scores**, e.g., high BER deviation increases particle weight for imminent failure.
 
 **Step 4 — RUL Estimation:**
 
 - For each particle, determine failure threshold crossing \(t_f\) (e.g., BER > max allowable, temperature > max rating).  
 - Aggregate across particles:  
 
-\[
+$$
 RUL = \mathbb{E}[t_f - t_{current}] \quad \pm \text{Std Dev}
-\]
+$$
 
 **Correlation Handling:**
 
@@ -112,9 +116,9 @@ RUL = \mathbb{E}[t_f - t_{current}] \quad \pm \text{Std Dev}
 
 ### **1. Priority Scoring**
 
-\[
+$$
 Priority_i = \frac{Criticality_i}{RUL_i + \epsilon}
-\]
+$$
 
 - Criticality: device-level importance (core vs edge link)  
 - RUL: predicted remaining weeks  
@@ -125,9 +129,9 @@ Priority_i = \frac{Criticality_i}{RUL_i + \epsilon}
 - Constraint-aware scheduling: avoids peak traffic windows, ensures N+1 redundancy.
 - Uses **integer programming / heuristic optimization**:  
 
-\[
+$$
 \text{Minimize } \sum_i Priority_i \cdot \text{DowntimePenalty}_i
-\]
+$$
 
 - Selects optimal timing for preventive interventions.
 
